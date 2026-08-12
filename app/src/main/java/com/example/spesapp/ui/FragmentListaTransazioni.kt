@@ -1,5 +1,6 @@
 package com.example.spesapp.ui
 
+import android.graphics.Color
 import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
@@ -47,6 +48,16 @@ class FragmentListaTransazioni : Fragment() {
                     adapter.submitList(state.transazioni)
                     binding.textVuoto.visibility =
                         if (state.transazioni.isEmpty()) View.VISIBLE else View.GONE
+                    binding.textTotaleEntrate.text =
+                        String.format("+%.2f €", state.totaleEntrate)
+                    binding.textTotaleUscite.text =
+                        String.format("-%.2f €", state.totaleUscite)
+                    binding.textSaldo.text = String.format("%.2f €", state.saldo)
+                    if (state.saldo >= 0) {
+                        binding.textSaldo.setTextColor(Color.parseColor("#2E7D32"))
+                    } else {
+                        binding.textSaldo.setTextColor(Color.parseColor("#C62828"))
+                    }
                 }
             }
         }
