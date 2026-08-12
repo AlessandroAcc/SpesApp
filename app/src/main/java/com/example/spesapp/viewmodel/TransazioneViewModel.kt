@@ -19,6 +19,9 @@ class TransazioneViewModel(application: Application) : AndroidViewModel(applicat
     private val _uiState = MutableStateFlow(TransazioneUiState())
     val uiState: StateFlow<TransazioneUiState> = _uiState.asStateFlow()
 
+    private val _mesi = MutableStateFlow<List<String>>(emptyList())
+    val mesi: StateFlow<List<String>> = _mesi.asStateFlow()
+
     private var tutte: List<Transazione> = emptyList()
 
     init {
@@ -27,6 +30,9 @@ class TransazioneViewModel(application: Application) : AndroidViewModel(applicat
                 tutte = lista
                 _uiState.update {
                     it.copy(categorie = lista.map { t -> t.categoria }.distinct())
+                }
+                _mesi.update {
+                    lista.map { t -> t.data.take(7) }.distinct().sortedDescending()
                 }
                 aggiornaLista()
             }
