@@ -1,0 +1,78 @@
+<?xml version="1.0" encoding="utf-8"?>
+<ScrollView
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent">
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="vertical"
+        android:padding="16dp">
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginBottom="16dp"
+            android:text="Nuova transazione"
+            android:textSize="22sp"
+            android:textStyle="bold" />
+
+        <EditText
+            android:id="@+id/editImporto"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:hint="Importo (es. 12.50)"
+            android:inputType="numberDecimal" />
+
+        <RadioGroup
+            android:id="@+id/radioTipo"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="8dp"
+            android:orientation="horizontal">
+
+            <RadioButton
+                android:id="@+id/radioUscita"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:checked="true"
+                android:text="Uscita" />
+
+            <RadioButton
+                android:id="@+id/radioEntrata"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Entrata" />
+        </RadioGroup>
+
+        <EditText
+            android:id="@+id/editCategoria"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:hint="Categoria (es. Cibo, Stipendio)"
+            android:inputType="text" />
+
+        <EditText
+            android:id="@+id/editData"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:hint="Data (AAAA-MM-GG)"
+            android:inputType="date" />
+
+        <EditText
+            android:id="@+id/editNota"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:hint="Nota (facoltativa)"
+            android:inputType="text" />
+
+        <Button
+            android:id="@+id/btnSalva"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="16dp"
+            android:text="Salva" />
+
+    </LinearLayout>
+</ScrollView>
