@@ -9,7 +9,9 @@ import androidx.fragment.app.viewModels
 import androidx.lifecycle.Lifecycle
 import androidx.lifecycle.lifecycleScope
 import androidx.lifecycle.repeatOnLifecycle
+import androidx.navigation.fragment.findNavController
 import androidx.recyclerview.widget.LinearLayoutManager
+import com.example.spesapp.R
 import com.example.spesapp.databinding.FragmentListaTransazioniBinding
 import com.example.spesapp.viewmodel.TransazioneViewModel
 import kotlinx.coroutines.launch
@@ -35,6 +37,9 @@ class FragmentListaTransazioni : Fragment() {
         adapter = AdapterTransazioni { transazione -> }
         binding.recyclerTransazioni.layoutManager = LinearLayoutManager(requireContext())
         binding.recyclerTransazioni.adapter = adapter
+        binding.fabAggiungi.setOnClickListener {
+            findNavController().navigate(R.id.action_lista_to_form)
+        }
 
         viewLifecycleOwner.lifecycleScope.launch {
             viewLifecycleOwner.repeatOnLifecycle(Lifecycle.State.STARTED) {

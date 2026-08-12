@@ -7,6 +7,7 @@ import android.view.ViewGroup
 import android.widget.Toast
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.viewModels
+import androidx.navigation.fragment.findNavController
 import com.example.spesapp.databinding.FragmentFormTransazioneBinding
 import com.example.spesapp.model.TipoTransazione
 import com.example.spesapp.viewmodel.TransazioneViewModel
@@ -80,15 +81,7 @@ class FragmentFormTransazione : Fragment() {
             nota = nota.ifEmpty { null }
         )
         Toast.makeText(requireContext(), "Transazione salvata", Toast.LENGTH_SHORT).show()
-        pulisciCampi()
-    }
-
-    private fun pulisciCampi() {
-        binding.editImporto.text?.clear()
-        binding.editCategoria.text?.clear()
-        binding.editNota.text?.clear()
-        binding.editData.setText(formatoData.format(Date()))
-        binding.radioUscita.isChecked = true
+        findNavController().popBackStack()
     }
 
     override fun onDestroyView() {

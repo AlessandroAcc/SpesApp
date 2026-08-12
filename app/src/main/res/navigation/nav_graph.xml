@@ -1,0 +1,22 @@
+<?xml version="1.0" encoding="utf-8"?>
+<navigation
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:id="@+id/nav_graph"
+    app:startDestination="@id/fragmentListaTransazioni">
+
+    <fragment
+        android:id="@+id/fragmentListaTransazioni"
+        android:name="com.example.spesapp.ui.FragmentListaTransazioni"
+        android:label="Lista transazioni">
+        <action
+            android:id="@+id/action_lista_to_form"
+            app:destination="@id/fragmentFormTransazione" />
+    </fragment>
+
+    <fragment
+        android:id="@+id/fragmentFormTransazione"
+        android:name="com.example.spesapp.ui.FragmentFormTransazione"
+        android:label="Nuova transazione" />
+
+</navigation>
