@@ -5,6 +5,9 @@ import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import androidx.biometric.BiometricManager
+import androidx.biometric.BiometricPrompt
+import androidx.core.content.ContextCompat
 import androidx.fragment.app.Fragment
 import androidx.navigation.fragment.findNavController
 import com.example.spesapp.R
@@ -36,6 +39,14 @@ class FragmentPin : Fragment() {
             binding.textTitoloPin.text = "Crea un PIN"
             binding.editConfermaPin.visibility = View.VISIBLE
             binding.btnConferma.text = "Crea PIN"
+        } else {
+            val manager = BiometricManager.from(requireContext())
+            if (manager.canAuthenticate(BiometricManager.Authenticators.BIOMETRIC_WEAK) ==
+                BiometricManager.BIOMETRIC_SUCCESS
+            ) {
+                binding.btnImpronta.visibility = View.VISIBLE
+                binding.btnImpronta.setOnClickListener { mostraImpronta() }
+            }
         }
 
         binding.btnConferma.setOnClickListener {
@@ -62,6 +73,27 @@ class FragmentPin : Fragment() {
                 }
             }
         }
+    }
+
+    private fun mostraImpronta() {
+        val prompt = BiometricPrompt(
+            this,
+            ContextCompat.getMainExecutor(requireContext()),
+            object : BiometricPrompt.AuthenticationCallback() {
+                override fun onAuthenticationSucceeded(
+                    result: BiometricPrompt.AuthenticationResult
+                ) {
+                    super.onAuthenticationSucceeded(result)
+                    vaiAllaLista()
+                }
+            }
+        )
+        val info = BiometricPrompt.PromptInfo.Builder()
+            .setTitle("Sblocca SpesApp")
+            .setSubtitle("Usa la tua impronta digitale")
+            .setNegativeButtonText("Usa il PIN")
+            .build()
+        prompt.authenticate(info)
     }
 
     private fun vaiAllaLista() {
