@@ -26,6 +26,9 @@
         <action
             android:id="@+id/action_lista_to_dettaglio"
             app:destination="@id/fragmentDettaglioTransazione" />
+        <action
+            android:id="@+id/action_lista_to_grafico"
+            app:destination="@id/fragmentGrafico" />
     </fragment>
 
     <fragment
@@ -49,5 +52,10 @@
             android:id="@+id/action_dettaglio_to_form"
             app:destination="@id/fragmentFormTransazione" />
     </fragment>
+
+    <fragment
+        android:id="@+id/fragmentGrafico"
+        android:name="com.example.spesapp.ui.FragmentGrafico"
+        android:label="Grafico" />
 
 </navigation>

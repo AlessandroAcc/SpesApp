@@ -50,6 +50,9 @@ class FragmentListaTransazioni : Fragment() {
         binding.fabAggiungi.setOnClickListener {
             findNavController().navigate(R.id.action_lista_to_form)
         }
+        binding.btnGrafico.setOnClickListener {
+            findNavController().navigate(R.id.action_lista_to_grafico)
+        }
 
         val adapterTipo = ArrayAdapter(
             requireContext(),

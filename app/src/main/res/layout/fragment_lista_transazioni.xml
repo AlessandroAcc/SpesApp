@@ -120,6 +120,17 @@
         </LinearLayout>
     </com.google.android.material.card.MaterialCardView>
 
+    <Button
+        android:id="@+id/btnGrafico"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="8dp"
+        android:layout_marginEnd="8dp"
+        android:text="Grafico uscite"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/cardDashboard" />
+
     <TextView
         android:id="@+id/textVuoto"
         android:layout_width="wrap_content"
@@ -130,7 +141,7 @@
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@id/cardDashboard" />
+        app:layout_constraintTop_toBottomOf="@id/btnGrafico" />
 
     <androidx.recyclerview.widget.RecyclerView
         android:id="@+id/recyclerTransazioni"
@@ -139,7 +150,7 @@
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@id/cardDashboard" />
+        app:layout_constraintTop_toBottomOf="@id/btnGrafico" />
 
     <com.google.android.material.floatingactionbutton.FloatingActionButton
         android:id="@+id/fabAggiungi"

@@ -51,4 +51,5 @@ dependencies {
     implementation("androidx.security:security-crypto-ktx:1.1.0-alpha06")
     testImplementation("junit:junit:4.13.2")
     implementation("androidx.biometric:biometric:1.1.0")
+    implementation("com.github.PhilJay:MPAndroidChart:v3.1.0")
 }
