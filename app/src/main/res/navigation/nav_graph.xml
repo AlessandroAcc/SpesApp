@@ -3,7 +3,18 @@
     xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     android:id="@+id/nav_graph"
-    app:startDestination="@id/fragmentListaTransazioni">
+    app:startDestination="@id/fragmentPin">
+
+    <fragment
+        android:id="@+id/fragmentPin"
+        android:name="com.example.spesapp.ui.FragmentPin"
+        android:label="PIN">
+        <action
+            android:id="@+id/action_pin_to_lista"
+            app:destination="@id/fragmentListaTransazioni"
+            app:popUpTo="@id/fragmentPin"
+            app:popUpToInclusive="true" />
+    </fragment>
 
     <fragment
         android:id="@+id/fragmentListaTransazioni"
