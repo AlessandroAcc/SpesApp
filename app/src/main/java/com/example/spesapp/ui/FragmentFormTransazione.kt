@@ -7,10 +7,13 @@ import android.view.ViewGroup
 import android.widget.Toast
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.viewModels
+import androidx.lifecycle.lifecycleScope
 import androidx.navigation.fragment.findNavController
 import com.example.spesapp.databinding.FragmentFormTransazioneBinding
 import com.example.spesapp.model.TipoTransazione
+import com.example.spesapp.model.Transazione
 import com.example.spesapp.viewmodel.TransazioneViewModel
+import kotlinx.coroutines.launch
 import java.text.SimpleDateFormat
 import java.util.Date
 import java.util.Locale
@@ -21,6 +24,7 @@ class FragmentFormTransazione : Fragment() {
     private val binding get() = _binding!!
     private val viewModel: TransazioneViewModel by viewModels()
     private val formatoData = SimpleDateFormat("yyyy-MM-dd", Locale.ITALY)
+    private var idTransazione: Int = -1
 
     override fun onCreateView(
         inflater: LayoutInflater,
@@ -33,7 +37,25 @@ class FragmentFormTransazione : Fragment() {
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
-        binding.editData.setText(formatoData.format(Date()))
+        idTransazione = arguments?.getInt("id", -1) ?: -1
+        if (idTransazione != -1) {
+            viewLifecycleOwner.lifecycleScope.launch {
+                val transazione = viewModel.prendiTransazione(idTransazione)
+                if (transazione != null) {
+                    binding.editImporto.setText(transazione.importo.toString())
+                    binding.editCategoria.setText(transazione.categoria)
+                    binding.editData.setText(transazione.data)
+                    binding.editNota.setText(transazione.nota ?: "")
+                    if (transazione.tipo == TipoTransazione.ENTRATA) {
+                        binding.radioEntrata.isChecked = true
+                    } else {
+                        binding.radioUscita.isChecked = true
+                    }
+                }
+            }
+        } else {
+            binding.editData.setText(formatoData.format(Date()))
+        }
         binding.btnSalva.setOnClickListener { salva() }
     }
 
@@ -73,14 +95,28 @@ class FragmentFormTransazione : Fragment() {
             TipoTransazione.USCITA
         }
 
-        viewModel.salvaTransazione(
-            importo = importo,
-            tipo = tipo,
-            categoria = categoria,
-            data = data,
-            nota = nota.ifEmpty { null }
-        )
-        Toast.makeText(requireContext(), "Transazione salvata", Toast.LENGTH_SHORT).show()
+        if (idTransazione != -1) {
+            viewModel.aggiornaTransazione(
+                Transazione(
+                    id = idTransazione,
+                    importo = importo,
+                    tipo = tipo,
+                    categoria = categoria,
+                    data = data,
+                    nota = nota.ifEmpty { null }
+                )
+            )
+            Toast.makeText(requireContext(), "Transazione aggiornata", Toast.LENGTH_SHORT).show()
+        } else {
+            viewModel.salvaTransazione(
+                importo = importo,
+                tipo = tipo,
+                categoria = categoria,
+                data = data,
+                nota = nota.ifEmpty { null }
+            )
+            Toast.makeText(requireContext(), "Transazione salvata", Toast.LENGTH_SHORT).show()
+        }
         findNavController().popBackStack()
     }
 

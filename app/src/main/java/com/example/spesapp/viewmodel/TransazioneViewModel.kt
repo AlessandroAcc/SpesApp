@@ -103,4 +103,8 @@ class TransazioneViewModel(application: Application) : AndroidViewModel(applicat
             repository.eliminaPerId(id)
         }
     }
+
+    suspend fun prendiTransazione(id: Int): Transazione? {
+        return repository.prendiPerId(id)
+    }
 }

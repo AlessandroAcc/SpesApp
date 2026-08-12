@@ -12,11 +12,31 @@
         <action
             android:id="@+id/action_lista_to_form"
             app:destination="@id/fragmentFormTransazione" />
+        <action
+            android:id="@+id/action_lista_to_dettaglio"
+            app:destination="@id/fragmentDettaglioTransazione" />
     </fragment>
 
     <fragment
         android:id="@+id/fragmentFormTransazione"
         android:name="com.example.spesapp.ui.FragmentFormTransazione"
-        android:label="Nuova transazione" />
+        android:label="Transazione">
+        <argument
+            android:name="id"
+            app:argType="integer"
+            android:defaultValue="-1" />
+    </fragment>
+
+    <fragment
+        android:id="@+id/fragmentDettaglioTransazione"
+        android:name="com.example.spesapp.ui.FragmentDettaglioTransazione"
+        android:label="Dettaglio">
+        <argument
+            android:name="id"
+            app:argType="integer" />
+        <action
+            android:id="@+id/action_dettaglio_to_form"
+            app:destination="@id/fragmentFormTransazione" />
+    </fragment>
 
 </navigation>

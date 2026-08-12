@@ -35,7 +35,10 @@ class FragmentListaTransazioni : Fragment() {
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
-        adapter = AdapterTransazioni { transazione -> }
+        adapter = AdapterTransazioni { transazione ->
+            val bundle = Bundle().apply { putInt("id", transazione.id) }
+            findNavController().navigate(R.id.action_lista_to_dettaglio, bundle)
+        }
         binding.recyclerTransazioni.layoutManager = LinearLayoutManager(requireContext())
         binding.recyclerTransazioni.adapter = adapter
         binding.fabAggiungi.setOnClickListener {
