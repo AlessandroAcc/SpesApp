@@ -46,7 +46,7 @@ Test unitari in `app/src/test`: creazione transazione, filtro per mese, calcolo 
 Esecuzione: tasto destro sul file di test → Run.
 
 ## Autore
-Accurso Alessandro
-Aruta Pietro
-Castaldo Nunzio
+Accurso Alessandro,Aruta Pietro,Castaldo Nunzio
+
+
 Lavoro svolto in gruppo con contributi di tutti i membri in ogni parte del progetto (database, UI, ViewModel, filtri, sicurezza, grafici, test).
